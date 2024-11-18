@@ -1,16 +1,10 @@
 // RegEx
 
-// findWordInString()
-// matchEmails();
+// doesStringStartWithANumber();
+// extractURLs();
 
-// findPhoneNumber();
-// replaceText();
-
-// matchDates();
-// validateStrongPassword();
-
-// findDoubleWords();
-extractUsernamesFromEmails();
+lookaheadAndLookbehind();
+// complexFormatting();
 
 // 1. Basic RegEx tasks
 function findWordInString() {
@@ -148,4 +142,80 @@ function extractUsernamesFromEmails() {
 
     console.log(`email: ${email}`);
     console.log(`username: ${username}`);
+}
+
+// 5. Search in file
+function doesStringStartWithANumber() {
+    const startDigit = "12. Test";
+    const noDigit = "Test";
+
+    // const regEx = new RegExp("^\\d+");
+    const regEx = /^\d+/;
+
+    // \d+ checks if the string is starts with 1 or more digits
+
+    console.log(startDigit)
+    console.log(`Is there a digit at the start of the string? ${regEx.test(startDigit)}`)
+    console.log(noDigit)
+    console.log(`Is there a digit at the start of the string? ${regEx.test(noDigit)}`)
+}
+
+function extractURLs() {
+    const sentence = "This is a link to a very good website https://test.no/";
+
+    // this regExTest also adds that it HAS to have a . at the end, and after the . there have to be 2 or more characters
+    const regEx = /https?:\/\/[^\s/$.?#].[^\s]*\.[^\s/]{2,}.*/;
+
+    // const regEx = new RegExp("https?:\\/[^\\s/$.?#].[^\\s]*");
+    const regEx1 = /https?:\/\/[^\s/$.?#].[^\s]*/;
+
+    // s? means that the "s" is optional
+
+    // [^\s/$.?#] makes it so it matches any non-whitespace and non-special characters
+    // [] means a character set
+    // ^ inside a character set it negates the set, meaning it matches any character NOT listed in it
+
+    // . matches any character execept a new line
+
+    // [^\s] means it matches any character thats not a whitespace
+    // [^\s]* means it matches 0 or more of the pattern behind it
+
+    const url = sentence.match(regEx);
+
+    console.log(`sentence: ${sentence}`);
+    console.log(`url: ${url}`);
+}
+
+// 6. Performance and Optimization
+
+// Optimizing RegEx-expressions:
+//      Be aware thath increasing the complexity of the RegEx kan affect performance.
+//      Simple og specific expressions are often faster than general and complex expressions.
+
+// Pitfalls:
+//      Avoid overuse of look backs and complex patterns,
+//      they can lead to bad performance or unwanted results.
+
+
+
+// Bonus RegEx task:
+
+// 1. Advanced functions
+function lookaheadAndLookbehind() {
+    const text = "word test, word example, password check, word correct";
+
+    // const regEx = new RegExp("(?<=\\bword\\s)\\w+");
+    const regEx = /(?<=\bword\s)\w+/g;
+    const matches = text.match(regEx);
+
+    // (? <=) is a lookbehind assertion. 
+    //        Which means it checks if something is in front of what you want to match.
+    // So (?<=\bword\s) checks if there is a "word" string, before each word. 
+
+    console.log(`Text: ${text}`)
+    console.log(`All words that has "word" in front of it: ${matches}`)
+}
+
+function complexFormatting() {
+    // not starting on yet
 }
