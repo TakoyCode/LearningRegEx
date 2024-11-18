@@ -164,10 +164,10 @@ function extractURLs() {
     const sentence = "This is a link to a very good website https://test.no/";
 
     // this regExTest also adds that it HAS to have a . at the end, and after the . there have to be 2 or more characters
-    const regEx = /https?:\/\/[^\s/$.?#].[^\s]*\.[^\s/]{2,}.*/;
+    const regExTest = /https?:\/\/[^\s/$.?#].[^\s]*\.[^\s/]{2,}.*/;
 
     // const regEx = new RegExp("https?:\\/[^\\s/$.?#].[^\\s]*");
-    const regEx1 = /https?:\/\/[^\s/$.?#].[^\s]*/;
+    const regEx = /https?:\/\/[^\s/$.?#].[^\s]*/;
 
     // s? means that the "s" is optional
 
@@ -195,7 +195,6 @@ function extractURLs() {
 // Pitfalls:
 //      Avoid overuse of look backs and complex patterns,
 //      they can lead to bad performance or unwanted results.
-
 
 
 // Bonus RegEx task:
