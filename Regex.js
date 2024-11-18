@@ -1,11 +1,5 @@
 // RegEx
 
-// doesStringStartWithANumber();
-// extractURLs();
-
-lookaheadAndLookbehind();
-// complexFormatting();
-
 // 1. Basic RegEx tasks
 function findWordInString() {
     const text = "password pass test";
@@ -205,16 +199,55 @@ function lookaheadAndLookbehind() {
 
     // const regEx = new RegExp("(?<=\\bword\\s)\\w+");
     const regEx = /(?<=\bword\s)\w+/g;
-    const matches = text.match(regEx);
 
     // (? <=) is a lookbehind assertion. 
     //        Which means it checks if something is in front of what you want to match.
     // So (?<=\bword\s) checks if there is a "word" string, before each word. 
+
+    const matches = text.match(regEx);
 
     console.log(`Text: ${text}`)
     console.log(`All words that has "word" in front of it: ${matches}`)
 }
 
 function complexFormatting() {
-    // not starting on yet
+    const text1 = `start this is some text
+        that spans multiple lines
+        end`;
+
+    const text2 = `start this is some text`;
+
+    // const regEx = new RegExp("(?<=\\bword\\s)\\w+");
+    const regEx = /start.*?end/s;
+
+    // s makes it so . matches any character, including newline characters(\n) that it didn't include before
+    //     can also look like this outside of javascript: /(?s)start.*?end/    
+
+    // . matches any character
+    // * matches 0 or more occurrences of the logic in front of it
+    // *? makes it so that it will match to the shorterst possible string that still makes the regex match 
+    // .*? together it matches as few characters as possible until it hits the next part of the regex
+
+    const match1 = text1.match(regEx);
+    const match2 = text2.match(regEx);
+
+    console.log(`Text1: ${text1}`)
+    console.log(`Match1: ${match1}`)
+    console.log(`Text2: ${text2}`)
+    console.log(`Match2: ${match2}`)
 }
+
+
+// Ending Tips
+
+// Test and verify
+// Use online RegEx-tools like https://regex101.com/ or https://regexr.com/,
+// to test and verify your RegEx expressions
+
+// Understand the syntax
+// RegEx-syntax can vary wildy between different programming languages and tools,
+// so remember to check the documentation for the specific enviroment you are working in.
+
+// Optimizing
+// Be careful with complex patterns that can lead to in inefficiencies.
+// Being simple and easy to read often triumphs complexity.
